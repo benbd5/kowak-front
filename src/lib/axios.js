@@ -8,4 +8,17 @@ const axios = Axios.create({
     withCredentials: true,
 })
 
-export default axios
+const userProfile = async () => {
+    try {
+        const { data } = await axios.get('/api/user')
+        console.log('userProfile', data)
+        return data
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+export {
+    axios,
+    userProfile
+}
