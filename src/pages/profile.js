@@ -9,11 +9,14 @@ const Profile = () => {
   const address = `/api/user`;
   const fetcher = async (url) => await axios.get(url).then((res) => res.data);
   const { data, error } = useSWR(address, fetcher);
+  console.log('data profile :', data);
 
   if (error) return <div>Failed to load</div>
   if (!data) return <div>Loading...</div>
 
   console.log('data :', data);
+
+  // @todo: exporter les sections en composants
 
   return (
     <AppLayout

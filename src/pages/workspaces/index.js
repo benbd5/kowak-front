@@ -31,10 +31,10 @@ const Profile = () => {
       </Head>
 
       {/* Espaces de travail */}
-      {data.page.data.map((item) => (
+      {data?.page?.data.map((item) => (
         <div className="py-12">
           <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div className="bg-white dark:bg-slate-900 overflow-hidden shadow-sm sm:rounded-lg">
               <div className="p-6 bg-white border-b border-gray-200">
                 <div key={item.workSpaceId}>
                   <div className="flex items-center justify-between">

@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react'
 
 const Profile = () => {
   const [message, setMessage] = useState('')
-  const [favorite, setFavorite] = useState()
+  const [favorite, setFavorite] = useState(false)
   const [userInfos, setUserInfos] = useState()
 
   const router = useRouter()
@@ -147,7 +147,7 @@ const Profile = () => {
                     </p>
                     <p className="mt-1 text-sm leading-5 text-gray-500">
                       <button onClick={addToFavorite}>
-                        {!favorite ? 'Retirer des favoris' : 'Ajouter aux favoris'}
+                        {favorite ? 'Retirer des favoris' : 'Ajouter aux favoris'}
                       </button>
                     </p>
                   </div>

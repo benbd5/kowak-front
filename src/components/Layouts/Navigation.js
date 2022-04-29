@@ -6,18 +6,44 @@ import ResponsiveNavLink, { ResponsiveNavButton } from '@/components/ResponsiveN
 import { DropdownButton } from '@/components/DropdownLink'
 import { useAuth } from '@/hooks/auth'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useTheme } from 'next-themes'
+import { MoonIcon, SunIcon } from '@heroicons/react/solid'
 
 const Navigation = ({ user }) => {
     const router = useRouter()
+    const [mounted, setMounted] = useState(false)
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
 
     const { logout } = useAuth()
     // console.log('user :', user.item);
 
     const [open, setOpen] = useState(false)
 
+    const { systemTheme, theme, setTheme } = useTheme()
+
+    const renderThemeChanger = () => {
+        if (!mounted) return null
+
+        const currentTheme = theme === 'system' ? systemTheme : theme
+
+        if (currentTheme === 'dark') {
+            return (
+                <SunIcon role="button" onClick={() => setTheme('light')} />
+            )
+        }
+        else {
+            return (
+                <MoonIcon role="button" onClick={() => setTheme('dark')} />
+            )
+        }
+    }
+
     return (
-        <nav className="bg-white border-b border-gray-100">
+        <nav className="bg-white border-b border-gray-100 dark:border-gray-700">
             {/* Primary Navigation Menu */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
@@ -30,6 +56,7 @@ const Navigation = ({ user }) => {
                                 </a>
                             </Link>
                         </div>
+                        {renderThemeChanger()}
 
                         {/* Navigation Links */}
                         <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
